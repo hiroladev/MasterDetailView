@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Login",
+        "storyboardID": "LoginViewController"
+    },
+    {
+        "title": "Logs",
+        "storyboardID": "LogViewController"
+    },
+    {
+        "title": "Feedbacks",
+        "storyboardID": "FeedbackViewController"
+    },
+    {
+        "title": "Settings",
+        "storyboardID": "SettingsViewController"
+    },
+    {
+        "title": "About",
+        "storyboardID": "AboutViewController"
+    }
+]
