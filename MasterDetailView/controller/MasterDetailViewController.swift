@@ -1,9 +1,31 @@
-//
-//  MainSplitViewController.swift
-//  MasterDetailView
-//
-//  Created by mis on 24.05.21.
-//
+/*
+
+MasterDetailViewController.swift
+MasterDetailView
+ 
+MIT License
+
+Copyright (c) 2021 Michael Schmidt
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+ */
 
 import Cocoa
 
@@ -11,10 +33,18 @@ internal class MasterDetailViewController: NSViewController {
 
     //  class variables
     //  view variables
-    @IBOutlet weak var splitView: NSSplitView!
-    @IBOutlet weak var navigationView: NSView!
     @IBOutlet weak var contentView: NSView!
+    //  table view
     @IBOutlet weak var navigationTableView: NSTableView!
+    //  label
+    @IBOutlet weak var appLogLabel: NSTextField!
+    
+    //  log messages
+    private var logMessages: [String] = []
+    private var logMessageIndex: Int = -1
+    
+    //  app delegate
+    private var app = NSApplication.shared.delegate as! AppDelegate
     
     //  list of navigation items
     private var navigationItems: [NavigationItem] = []
@@ -37,26 +67,19 @@ internal class MasterDetailViewController: NSViewController {
         //  create the viewcontroller form classname
         if let subViewController = NSStoryboard(name: "Content", bundle: nil).instantiateController(withIdentifier: withStoryboardID) as? NSViewController {
             
-            //  position of subview in center of contentview
-            //  from: https://stackoverflow.com/questions/4681176/how-to-align-a-subview-to-the-center-of-a-parent-nsview
-            let subViewWidth = subViewController.view.frame.width
-            let subViewHeight = subViewController.view.frame.height
-            let x = (self.contentView.bounds.width - subViewWidth) * 0.5
-            let y = (self.contentView.bounds.height - subViewHeight) * 0.5
-            let subViewRect = CGRect(x: x, y: y, width: subViewWidth, height: subViewHeight)
-            subViewController.view.frame = subViewRect
-            subViewController.view.autoresizingMask = [.minXMargin, .maxXMargin, .minYMargin, .maxYMargin]
-            self.contentView.addSubview(subViewController.view)
+            //  add the subview
+            let detailView = subViewController.view
+            detailView.frame.size.width = self.contentView.frame.size.width
+            detailView.frame.size.height = self.contentView.frame.size.height
+
+            self.contentView.addSubview(detailView)
             
         }
         
     }
     
-
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
+    //  misc views initializes
+    private func initializeView() {
         
         //  size of view
         self.view.setFrameSize(NSSize(width: Global.AppSettings.viewWidth, height: Global.AppSettings.viewHeight))
@@ -69,14 +92,10 @@ internal class MasterDetailViewController: NSViewController {
         } catch (let error) {
             
             //  log in view
-            print(error.localizedDescription)
+            self.logMessages.append(error.localizedDescription)
+            self.appLogLabel.stringValue = error.localizedDescription
             
         }
-        
-        self.splitView.setPosition(250, ofDividerAt: 0)
-        
-        //  splitview delegate
-        self.splitView.delegate = self
         
         //  navigations table: datasource and delegate
         self.navigationTableView.dataSource = self
@@ -85,12 +104,25 @@ internal class MasterDetailViewController: NSViewController {
         //  register the custom tableviewcell
         self.navigationTableView.register(NSNib(nibNamed: "NavigationTableCellView", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "NavigationTableCellView"))
         
+        
     }
     
-}
-
-extension MasterDetailViewController: NSSplitViewDelegate {
+    //  app logs
+    private func addAppLogEntry(_ entry: String) {
+        
+        self.logMessages.append(entry)
+        self.logMessageIndex += 1
+        
+    }
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        //  misc initialize
+        self.initializeView()
+        
+    }
     
 }
 
@@ -139,6 +171,8 @@ extension MasterDetailViewController: NSTableViewDataSource, NSTableViewDelegate
                 
                 let navigationItem = self.navigationItems[row]
                 self.addContentView(asChildViewController: navigationItem.storyboardID)
+                
+                self.appLogLabel.stringValue = "Select ... ".appending(navigationItem.title)
                 
             }
             
