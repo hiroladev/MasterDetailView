@@ -133,8 +133,8 @@ extension MasterDetailViewController: NSWindowDelegate {
     
     func windowDidResize(_ notification: Notification) {
         
-        self.detailView!.frame.size.width = self.contentView.frame.size.width
-        self.detailView!.frame.size.height = self.contentView.frame.size.height
+        self.detailView?.frame.size.width = self.contentView.frame.size.width
+        self.detailView?.frame.size.height = self.contentView.frame.size.height
         
     }
     
