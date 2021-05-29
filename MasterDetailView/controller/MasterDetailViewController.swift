@@ -56,25 +56,33 @@ internal class MasterDetailViewController: NSViewController {
     private func addContentView(asChildViewController withStoryboardID: String) {
             
         //  remove the previously view controller
+        let controllers = self.children
+        for controller in controllers {
+            
+            controller.removeFromParent()
+            
+        }
+        
+        //  remove the previously view
         let subviews = self.contentView.subviews
-        if subviews.count > 0 {
+        for subview in subviews {
             
-            for subview in subviews {
-            
-                subview.removeFromSuperview()
-                
-            }
+            subview.removeFromSuperview()
             
         }
         
         //  create the viewcontroller form classname
         if let subViewController = NSStoryboard(name: "Content", bundle: nil).instantiateController(withIdentifier: withStoryboardID) as? NSViewController {
             
-            //  add the subview
+            //  add the subview controller as controller
+            self.addChild(subViewController)
+            
+            //  set the size of the subview
             self.detailView = subViewController.view
             self.detailView!.frame.size.width = self.contentView.frame.size.width
             self.detailView!.frame.size.height = self.contentView.frame.size.height
 
+            //  add the subview
             self.contentView.addSubview(detailView!)
             
         }
