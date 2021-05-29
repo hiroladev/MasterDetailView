@@ -46,6 +46,9 @@ internal class MasterDetailViewController: NSViewController {
     //  app delegate
     private var app = NSApplication.shared.delegate as! AppDelegate
     
+    //  actual detailView
+    private var detailView: NSView?
+    
     //  list of navigation items
     private var navigationItems: [NavigationItem] = []
     
@@ -68,11 +71,11 @@ internal class MasterDetailViewController: NSViewController {
         if let subViewController = NSStoryboard(name: "Content", bundle: nil).instantiateController(withIdentifier: withStoryboardID) as? NSViewController {
             
             //  add the subview
-            let detailView = subViewController.view
-            detailView.frame.size.width = self.contentView.frame.size.width
-            detailView.frame.size.height = self.contentView.frame.size.height
+            self.detailView = subViewController.view
+            self.detailView!.frame.size.width = self.contentView.frame.size.width
+            self.detailView!.frame.size.height = self.contentView.frame.size.height
 
-            self.contentView.addSubview(detailView)
+            self.contentView.addSubview(detailView!)
             
         }
         
@@ -121,6 +124,17 @@ internal class MasterDetailViewController: NSViewController {
         
         //  misc initialize
         self.initializeView()
+        
+    }
+    
+}
+
+extension MasterDetailViewController: NSWindowDelegate {
+    
+    func windowDidResize(_ notification: Notification) {
+        
+        self.detailView!.frame.size.width = self.contentView.frame.size.width
+        self.detailView!.frame.size.height = self.contentView.frame.size.height
         
     }
     

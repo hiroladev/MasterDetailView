@@ -23,6 +23,7 @@
 		455062C4265CE82900A4C026 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455062C3265CE82900A4C026 /* FeedbackViewController.swift */; };
 		455062C6265CE83D00A4C026 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455062C5265CE83D00A4C026 /* SettingsViewController.swift */; };
 		455062C8265CE85000A4C026 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455062C7265CE85000A4C026 /* AboutViewController.swift */; };
+		45C4D6502662533E00178638 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C4D64F2662533E00178638 /* WindowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		455062C3265CE82900A4C026 /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		455062C5265CE83D00A4C026 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		455062C7265CE85000A4C026 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		45C4D64F2662533E00178638 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		455062A0265ACD7C00A4C026 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				45C4D64F2662533E00178638 /* WindowController.swift */,
 				455062BB265BC68A00A4C026 /* MasterDetailViewController.swift */,
 				455062BD265BD3EA00A4C026 /* LoginViewController.swift */,
 				455062C1265CE81B00A4C026 /* LogViewController.swift */,
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				455062BE265BD3EA00A4C026 /* LoginViewController.swift in Sources */,
+				45C4D6502662533E00178638 /* WindowController.swift in Sources */,
 				455062B8265BBDC900A4C026 /* NavigationItemsLoader.swift in Sources */,
 				455062C8265CE85000A4C026 /* AboutViewController.swift in Sources */,
 				455062B5265BBA4200A4C026 /* NavigationItem.swift in Sources */,

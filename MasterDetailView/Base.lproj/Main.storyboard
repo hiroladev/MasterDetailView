@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -675,7 +674,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="SimpleLogViewer" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MasterDetailView" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +683,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="MasterDetailView" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="SimpleLogViewer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="aqua" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="600" height="400"/>
@@ -704,7 +703,7 @@
         <!--SimpleLogViewer-->
         <scene sceneID="vGv-QE-M1U">
             <objects>
-                <viewController title="SimpleLogViewer" showSeguePresentationStyle="single" id="riM-FA-oEy" customClass="MasterDetailViewController" customModule="SimpleLogViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SimpleLogViewer" showSeguePresentationStyle="single" id="riM-FA-oEy" customClass="MasterDetailViewController" customModule="MasterDetailView" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="41C-xQ-q17">
                         <rect key="frame" x="0.0" y="0.0" width="777" height="469"/>
                         <autoresizingMask key="autoresizingMask"/>
